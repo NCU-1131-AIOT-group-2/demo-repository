@@ -1,0 +1,42 @@
+target: 
+1. Run the camera successfully.
+2. Take a photo.
+3. Record a video.
+
+problem 1:
+'sudo apt full-upgrade'
+=>
+Configuration file '/etc/xdg/labwc/environment'
+ ==> Modified (by you or by a script) since installation.
+ ==> Package distributor has shipped an updated version.
+   What would you like to do about it ?  Your options are:
+    Y or I  : install the package maintainer's version
+    N or O  : keep your currently-installed version
+      D     : show the differences between the versions
+      Z     : start a shell to examine the situation
+ The default action is to keep your current version.
+*** environment (Y/I/N/O/D/Z) [default=N] ? Y
+
+result: installed NEW packages
+
+problem 2:
+*recording video*
+camera turn on => OK
+recording video => probably OK
+check video just recorded => NO (not solved)
+It can't play fluently and may crash after 1 second.
+
+20:38 => find the solution of problem2.
+/home/pi/Bookshelf/BeginnersGuide page 220 of 290
+21:00
+failed. WTF imma going to ask chatgpt but this berry seems to be burning. 
+
+libcamera-vid -t 10000 --save-pts timestamps.txt -o test-time.h264
+-----------------------^^^^^^^^^^^^^^^^^^^^^^^^^
+=>seems not working on Pi5
+22:43 ***after reading loooooots of articles AHHHHHHH***
+if you want to play video on rsby 
+=>you have to record timestamp in the video. 
+=>'libcamera-vid' doesn't support '--save-pts' on Pi5 *maybe*
+=>use 'rpicam-vid -o test.mkv' instead.
+=>result: can record and play the video.
